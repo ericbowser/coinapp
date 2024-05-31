@@ -57,6 +57,7 @@ function TradeView(props = {}) {
         }
     }
     const setMode = (event) => {
+        event.preventDefault();
         if (event.target.value === 'on') {
             console.log(event.target.checked)
             setDarkModeChecked(event.target.checked)
@@ -77,7 +78,7 @@ function TradeView(props = {}) {
         : "light";
 
     return (
-        <Grid>
+        <Grid className={'container'}>
             <GridCol1>
                 <Container>
                     <Navbar variant={'dark'} style={{boxShadow: 'white 5px 5px 5px 7px', margin: '25px'}}>
@@ -113,21 +114,19 @@ function TradeView(props = {}) {
                 </Container>
             </GridCol1>
             <GridCol2>
-                {!spinner && (
-                    <AdvancedChart widgetProps={
-                        {
-                            allow_symbol_change: true,
-                            hide_side_toolbar: true,
-                            theme: mode,
-                            style: 1,
-                            symbol: symbol,
-                            range: 'ALL',
-                            show_popup_button: true,
-                            height: '700px',
-                            width: '1400px'
-                        }
-                    }/>
-                )}
+                <AdvancedChart widgetProps={
+                    {
+                        allow_symbol_change: true,
+                        hide_side_toolbar: true,
+                        theme: mode,
+                        style: 1,
+                        symbol: symbol,
+                        range: 'ALL',
+                        show_popup_button: true,
+                        height: '700px',
+                        width: '1400px'
+                    }
+                }/>
             </GridCol2>
         </Grid>
     );
